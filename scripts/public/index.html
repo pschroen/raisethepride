@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>#RaiseThePride</title>
+		<meta name="description"						content="You can now combat the negativity surrounding the LGBTQ community by tweeting something positive with #RaiseThePride. Come check out our live Pride Flag installation at The Churchmouse at Church St. and Maitland St. Help us fly our flag proudly, as it should, for World Pride 2014.">
+
+		<meta name="viewport"							content="width=320,initial-scale=0.5">
+		<meta http-equiv="X-UA-Compatible"				content="IE=edge,chrome=1">
+
+		<link rel="shortcut icon" 						href="/favicon.ico" type="image/x-icon">
+
+		<meta name="twitter:card" 						content="summary">
+		<meta name="twitter:site" 						content="@TorontoPFLAG">
+		<meta name="twitter:title"						content="Help us #RaiseThePride Flag">
+		<meta name="twitter:description"				content="You can now combat the negativity surrounding the LGBTQ community by tweeting something positive with #RaiseThePride. Come check out our live Pride Flag installation at The Churchmouse at Church St. and Maitland St. Help us fly our flag proudly, as it should, for World Pride 2014.">
+		<meta name="twitter:creator"					content="@TorontoPFLAG">
+		<meta name="twitter:image" 						content="http://s171000.gridserver.com/images/logo.jpg">
+
+		<meta property="og:title"						content="Help us #RaiseThePride Flag">
+		<meta property="og:description"					content="You can now combat the negativity surrounding the LGBTQ community by tweeting something positive. Check out our live Pride Flag installation at The Churchmouse at Church St. and Maitland St. Help us fly our flag proudly, as it should, for World Pride 2014.">
+		<meta property="og:url"							content="http://raisethepride.ca/">
+		<meta property="og:image" content="http://raisethepride.ca/assets/images/facebook-share.jpg" />
+
+		<meta property="copyright"						content="© 2014 Toronto PFLAG">
+		<meta property="description"					content="You can now combat the negativity surrounding the LGBTQ community by tweeting something positive with #RaiseThePride. Come check out our live Pride Flag installation at The Churchmouse at Church St. and Maitland St. Help us fly our flag proudly, as it should, for World Pride 2014.">
+
+		<script src="assets/js/modernizr-2.8.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="http://cdn.socket.io/socket.io-1.1.0.js"></script>
+		<script>
+			var pos = 0;
+			var newpos = 0;
+			var socket = io(location.host);
+			socket.on('flag', function (data) {
+				move((data.position*0.00425)-5.5);
+				$('#tweet .name').addClass(data.sentiment == 'positive' ? 'raise' : 'drop').html(data.sentiment == 'positive' ? '<a href="https://twitter.com/'+data.tweet.user.screen_name+'/status/'+data.tweet.id_str+'" target="_blank"><strong>'+data.tweet.user.name+'</strong> @'+data.tweet.user.screen_name+'</a>' : '<strong>'+data.tweet.user.name+'</strong> @'+data.tweet.user.screen_name);
+				$('#tweet .text').addClass(data.sentiment == 'positive' ? 'raise' : 'drop').html(data.sentiment == 'positive' ? '<a href="https://twitter.com/'+data.tweet.user.screen_name+'/status/'+data.tweet.id_str+'" target="_blank">'+data.tweet.text+'</a>' : data.tweet.text);
+				setTimeout(function () {
+					$('#tweet .name').removeClass('raise').removeClass('drop');
+					$('#tweet .text').removeClass('raise').removeClass('drop');
+				}, 600);
+			});
+
+			function moveflag(deg) {
+				$('#flag').css({'-webkit-transform':'rotate('+deg+'deg)'});
+				$('#flag').css({'-moz-transform':'rotate('+deg+'deg)'});
+				$('#flag').css({'-ms-transform':'rotate('+deg+'deg)'});
+				$('#flag').css({'-o-transform':'rotate('+deg+'deg)'});
+				$('#flag').css({'transform':'rotate('+deg+'deg)'});
+			};
+
+			function move(to) {
+				newpos = to;
+				var timer = setInterval(function () {
+					var move = Math.round((pos+((newpos-pos)/10))*1000)/1000;
+					if (newpos > pos) {
+						if (move+0.02 >= newpos) move = newpos;
+					} else {
+						if (move-0.02 <= newpos) move = newpos;
+					}
+					moveflag(move);
+					pos = move;
+					if (pos == newpos) clearInterval(timer);
+				}, 30);
+			};
+		</script>
+
+		<style type="text/css">
+			@font-face {
+			    font-family: 'AdobeGaramondProRegular';
+			    src: url('assets/fonts/garamond/agaramondpro-regular-webfont.eot#') format('eot'),
+			         url('assets/fonts/garamond/agaramondpro-regular-webfont.woff') format('woff'),
+			         url('assets/fonts/garamond/agaramondpro-regular-webfont.ttf') format('truetype'),
+			         url('assets/fonts/garamond/agaramondpro-regular-webfont.svg#webfontyQuHe3YJ') format('svg');
+			    font-weight: normal;
+			    font-style: normal;
+			}
+
+			body, a, img {
+				border: 0;
+				margin: 0;
+				padding: 0;
+			}
+
+			body, a {
+				color: #e0dfdf;
+				-webkit-font-smoothing: antialiased;
+				text-rendering: optimizelegibility;
+			}
+
+			body {
+				background-color: #0b2b41;
+				background-image: -webkit-linear-gradient(top, #4c83a8, #0b2b41 30%), -webkit-radial-gradient(rgba(76,131,168,0), rgba(76,131,168,0.6));
+				background-image:    -moz-linear-gradient(top, #4c83a8, #0b2b41 30%), -moz-radial-gradient(rgba(76,131,168,0), rgba(76,131,168,0.6));
+				background-image:     -ms-linear-gradient(top, #4c83a8, #0b2b41 30%), -ms-radial-gradient(rgba(76,131,168,0), rgba(76,131,168,0.6));
+				background-image:      -o-linear-gradient(top, #4c83a8, #0b2b41 30%), -o-radial-gradient(rgba(76,131,168,0), rgba(76,131,168,0.6));
+				background-image:         linear-gradient(top, #4c83a8, #0b2b41 30%), radial-gradient(rgba(76,131,168,0), rgba(76,131,168,0.6));
+				font-family: 'AdobeGaramondProRegular', 'Times New Roman', serif;
+				font-size: 24px;
+				-webkit-transition: all 1s ease;
+				-moz-transition:    all 1s ease;
+				-ms-transition:     all 1s ease;
+				-o-transition:      all 1s ease;
+				transition:         all 1s ease;
+			}
+
+			h1 {
+				font-family: 'AdobeGaramondProRegular', 'Times New Roman', serif;
+			    font-weight: bold;
+				font-size: 42px;
+				position: relative; 
+				left: -20px;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			#container {
+				position: relative; 
+				max-width: 1600px;
+				margin: auto;
+			}
+
+			#hero {
+				position: relative;
+				top: 40px;
+				margin: 0 auto;
+				width: 650px;
+				height: 1200px;
+				left: 60px;
+			}
+
+			#flag {
+				-webkit-transform-origin: -2200px 45%;
+				-moz-transform-origin:    -2200px 45%;
+				-ms-transform-origin:     -2200px 45%;
+				-o-transform-origin:      -2200px 45%;
+				transform-origin:         -2200px 45%;
+			}
+
+			#content {
+				position: relative;
+				padding-bottom: 200px;
+				margin: 0 auto;
+				width: 80%;
+			}
+
+			#logos {
+				position: absolute; 
+				left: 40px;
+				top: 40px;
+				width: 100%;
+				height: 70px;
+				text-align: center;
+			}
+
+			.logo {
+				margin-right: 15px;
+			}
+
+			.logo img {
+				vertical-align: middle;
+			}
+
+			.social {
+				display: inline-block;
+				text-align: left;
+				vertical-align: middle;
+			}
+
+			.hr {
+				background: url(assets/images/hr.png) no-repeat top center transparent;
+				height: 1px;
+				margin: 20px 0;
+			}
+
+			#content .hr {
+				margin: 80px 0;
+			}
+
+			#tweet {
+				font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; 
+				font-weight: 300;
+				font-size: 18px;
+				width: 440px;
+				position: absolute;
+				left: 64px;
+				top: 640px;
+			}
+
+			#tweet .name, #tweet .text {
+				margin-bottom: 10px;
+				margin-left: 10px;
+			}
+
+			#tweet .name {
+				font-size: 16px;
+			}
+
+			#arrow {
+				position: absolute;
+				left: 232px;
+				top: 976px;
+			}
+
+			#map-canvas {
+				width: 520px;
+				height: 278px;
+			}
+
+			#clouds1 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: url(assets/images/clouds1.png) no-repeat;
+				background-position: 35% 0;
+			    -webkit-animation: clouds1 60s infinite linear;
+			       -moz-animation: clouds1 60s infinite linear;
+			        -ms-animation: clouds1 60s infinite linear;
+			         -o-animation: clouds1 60s infinite linear;
+			            animation: clouds1 60s infinite linear;
+			}
+			@-webkit-keyframes clouds1 {
+			   from { background-position:  35% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@-moz-keyframes clouds1 {
+			   from { background-position:  35% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@-ms-keyframes clouds1 {
+			   from { background-position:  35% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@-o-keyframes clouds1 {
+			   from { background-position:  35% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@keyframes clouds1 {
+			   from { background-position:  35% 0; }
+			     to { background-position: 200% 0; }
+			}
+
+			#clouds2 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: url(assets/images/clouds2.png) no-repeat;
+				background-position: 50% 0;
+			    -webkit-animation: clouds2 60s infinite linear;
+			       -moz-animation: clouds2 60s infinite linear;
+			        -ms-animation: clouds2 60s infinite linear;
+			         -o-animation: clouds2 60s infinite linear;
+			            animation: clouds2 60s infinite linear;
+			}
+			@-webkit-keyframes clouds2 {
+			   from { background-position:  50% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@-moz-keyframes clouds2 {
+			   from { background-position:  50% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@-ms-keyframes clouds2 {
+			   from { background-position:  50% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@-o-keyframes clouds2 {
+			   from { background-position:  50% 0; }
+			     to { background-position: 200% 0; }
+			}
+			@keyframes clouds2 {
+			   from { background-position:  50% 0; }
+			     to { background-position: 200% 0; }
+			}
+
+			#clouds3 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: url(assets/images/clouds1.png) no-repeat;
+				background-position: 35% 0;
+			    -webkit-animation: clouds3 60s infinite linear;
+			       -moz-animation: clouds3 60s infinite linear;
+			        -ms-animation: clouds3 60s infinite linear;
+			         -o-animation: clouds3 60s infinite linear;
+			            animation: clouds3 60s infinite linear;
+			}
+			@-webkit-keyframes clouds3 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  35% 0; }
+			}
+			@-moz-keyframes clouds3 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  35% 0; }
+			}
+			@-ms-keyframes clouds3 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  35% 0; }
+			}
+			@-o-keyframes clouds3 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  35% 0; }
+			}
+			@keyframes clouds3 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  35% 0; }
+			}
+
+			#clouds4 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: url(assets/images/clouds2.png) no-repeat;
+				background-position: 50% 0;
+			    -webkit-animation: clouds4 60s infinite linear;
+			       -moz-animation: clouds4 60s infinite linear;
+			        -ms-animation: clouds4 60s infinite linear;
+			         -o-animation: clouds4 60s infinite linear;
+			            animation: clouds4 60s infinite linear;
+			}
+			@-webkit-keyframes clouds4 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  50% 0; }
+			}
+			@-moz-keyframes clouds4 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  50% 0; }
+			}
+			@-ms-keyframes clouds4 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  50% 0; }
+			}
+			@-o-keyframes clouds4 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  50% 0; }
+			}
+			@keyframes clouds4 {
+			   from { background-position: -200% 0; }
+			     to { background-position:  50% 0; }
+			}
+
+			#flag {
+				background-image: url(assets/images/flag.png);
+				display: block;
+			    width: 320px;
+			    height: 240px;
+			    -webkit-animation: flag 2.3333s steps(28) infinite;
+			       -moz-animation: flag 2.3333s steps(28) infinite;
+			        -ms-animation: flag 2.3333s steps(28) infinite;
+			         -o-animation: flag 2.3333s steps(28) infinite;
+			            animation: flag 2.3333s steps(28) infinite;
+			}
+			@-webkit-keyframes flag {
+			   from { background-position:    -0px; }
+			     to { background-position: -8960px; }
+			}
+			@-moz-keyframes flag {
+			   from { background-position:    -0px; }
+			     to { background-position: -8960px; }
+			}
+			@-ms-keyframes flag {
+			   from { background-position:    -0px; }
+			     to { background-position: -8960px; }
+			}
+			@-o-keyframes flag {
+			   from { background-position:    -0px; }
+			     to { background-position: -8960px; }
+			}
+			@keyframes flag {
+			   from { background-position:    -0px; }
+			     to { background-position: -8960px; }
+			}
+
+			.raise {
+				-webkit-animation: raise 500ms;
+				-moz-animation: raise 500ms;
+				-ms-animation: raise 500ms;
+				-o-animation: raise 500ms;
+				animation: raise 500ms;
+			}
+			@-webkit-keyframes raise {
+				0%   { opacity: 0; -webkit-transform: translateY(20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@-moz-keyframes raise {
+				0%   { opacity: 0; -webkit-transform: translateY(20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@-ms-keyframes raise {
+				0%   { opacity: 0; -webkit-transform: translateY(20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@-o-keyframes raise {
+				0%   { opacity: 0; -webkit-transform: translateY(20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@keyframes raise {
+				0%   { opacity: 0; transform: translateY(20px); }
+				100% { opacity: 1; transform: translateY(0px); }
+			}
+
+			.drop {
+				-webkit-animation: drop 500ms;
+				-moz-animation: drop 500ms;
+				-ms-animation: drop 500ms;
+				-o-animation: drop 500ms;
+				animation: drop 500ms;
+			}
+			@-webkit-keyframes drop {
+				0%   { opacity: 0; -webkit-transform: translateY(-20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@-moz-keyframes drop {
+				0%   { opacity: 0; -webkit-transform: translateY(-20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@-ms-keyframes drop {
+				0%   { opacity: 0; -webkit-transform: translateY(-20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@-o-keyframes drop {
+				0%   { opacity: 0; -webkit-transform: translateY(-20px); }
+				100% { opacity: 1; -webkit-transform: translateY(0px); }
+			}
+			@keyframes drop {
+				0%   { opacity: 0; transform: translateY(-20px); }
+				100% { opacity: 1; transform: translateY(0px); }
+			}
+
+			@media (max-width: 767px) {
+
+				body {
+					font-size: 34px;
+				}
+
+				h1 {
+					font-size: 52px;
+				}
+
+				#tweet {
+					font-size: 28px;
+				}
+
+				#tweet .name {
+					font-size: 26px;
+				}
+
+				#clouds1 {
+					background-position: -400px 0;
+				    -webkit-animation: none;
+				       -moz-animation: none;
+				        -ms-animation: none;
+				         -o-animation: none;
+				            animation: none;
+				}
+
+				#clouds2 {
+					background-position: -100px 0;
+				    -webkit-animation: none;
+				       -moz-animation: none;
+				        -ms-animation: none;
+				         -o-animation: none;
+				            animation: none;
+				}
+
+				#clouds3 {
+					display: none;
+				    -webkit-animation: none;
+				       -moz-animation: none;
+				        -ms-animation: none;
+				         -o-animation: none;
+				            animation: none;
+				}
+
+				#clouds4 {
+					display: none;
+				    -webkit-animation: none;
+				       -moz-animation: none;
+				        -ms-animation: none;
+				         -o-animation: none;
+				            animation: none;
+				}
+
+			}
+
+			@media (min-width: 1081px) and (max-width: 1680px) {
+
+				#container {
+					max-width: 1000px;
+				}
+
+				#hero {
+					height: 800px;
+				}
+
+				#flag-pole {
+					-webkit-transform: scale(0.6);
+					-moz-transform:    scale(0.6);
+					-ms-transform:     scale(0.6);
+					-o-transform:      scale(0.6);
+					transform:         scale(0.6);
+					-webkit-transform-origin: 0 0;
+					-moz-transform-origin:    0 0;
+					-ms-transform-origin:     0 0;
+					-o-transform-origin:      0 0;
+					transform-origin:         0 0;
+				}
+
+				#tweet {
+					top: 400px;
+				}
+
+				#arrow {
+					top: 576px;
+				}
+
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-51047442-2', 'raisethepride.ca');
+		  ga('send', 'pageview');
+
+		</script>
+
+		<div id="clouds4"></div>
+		<div id="clouds3"></div>
+		<div id="clouds2"></div>
+		<div id="clouds1"></div>
+
+		<div id="container">
+
+			<div id="hero">
+				<div id="flag-pole">
+					<div id="pole" style="position:absolute; left:0; top:0;">
+						<img width="48" height="1065" src="assets/images/pole.png" alt="#RaiseThePride">
+					</div>
+					<div id="flag" style="position:absolute; left:36px; top:260px;"></div>
+				</div>
+
+				<div id="tweet">
+					<div class="hr"></div>
+					<div class="name"></div>
+					<div class="text"></div>
+				</div>
+
+				<div id="arrow">
+					<a href="#RaiseThePride"><img width="63" height="63" src="assets/images/arrow_down.png"></a>
+				</div>
+			</div>
+
+			<div id="content">
+				<a name="RaiseThePride"><h1>#RaiseThePride</h1></a>
+				<div>
+<br>The objective of this art installation piece is to get all our supportive and open-minded allies in Toronto, Canada, and the world to band together and help fly the flag high, as it should, for the duration of World Pride 2014. 
+<br>
+<br>Our Twitter-activated Pride Flag aggregates positive and negative terms from Twitter, exposing the harmful sentiments and celebrating the positive ones. So, all you need to do is tweet something positive.
+				</div>
+				<div class="hr"></div>
+
+				<a name="Mission"><h1>At the Heart of Toronto’s LGBTQ Community</h1></a>
+				<div>
+Toronto PFLAG (Parents, Families and Friends of Lesbians and Gays) promotes the health and well-being of all members of the LGBTQ community, their families, and friends through:
+<br>
+<br><strong>Support</strong> – To cope with an adverse society.
+<br>
+<br><strong>Education</strong> – To enlighten an ill-informed public in order to end discrimination and secure equal rights.
+<br>
+<br><strong>Advocacy</strong> – To create a healthy, respectful society for all by providing opportunities for dialogue about sexual orientation and gender identity.
+<br>
+<br><a href="http://www.torontopflag.org/get-involved/donate" target="_blank"><img width="228" height="67" src="assets/images/donatenow.png" alt="Donate Now"></a>
+				</div>
+				<div class="hr"></div>
+
+				<a name="Location"><h1>Location</h1></a>
+				<div>
+See our Twitter-activated Pride Flag in action at:
+<div id="map-canvas"></div>
+<br><a href="http://www.firkinpubs.com/thechurchmouseandfirkin/" target="_blank"><img width="129" height="64" src="assets/images/logo_churchmouse.png" alt="The Churchmouse"></a>
+<br>(416) 927-1735
+<br>475 Church St, Toronto, ON
+<br>M4Y 2C5
+				</div>
+				<div class="hr"></div>
+
+				<a name="Contact"><h1>Contact</h1></a>
+				<div>
+<strong>Toronto PFLAG</strong>
+<br>200 Wolverleigh Blvd.
+<br>Toronto, ON M4C 1S2
+<br>
+<br><strong>24-hour support line: </strong>416-406-6378
+<br><strong>General Inquiries: </strong>416-406-1727
+<br><strong>Email: </strong> <a href="mailto:office@pflagtoronto.org">office@pflagtoronto.org</a>
+<br><strong>Website: </strong> <a href="http://www.torontopflag.org/" target="_blank">torontopflag.org</a>
+				</div>
+				<div class="hr"></div>
+
+				<a name="SpecialThanks"><h1>Special Thanks</h1></a>
+				<div>
+The Churchmouse
+<br>ShantyTown Inc.
+<br>JWT Canada
+<br>AXYZ
+<br>Henrieta Haniskova
+<br>Ken Laverty
+<br>And YOU! :)
+				</div>
+			</div>
+
+			<div id="logos">
+				<a class="logo" href="#RaiseThePride"><img width="171" height="35" src="assets/images/logo_raisethepride.png" alt="#RaiseThePride"></a>
+
+				<a class="logo" href="http://www.torontopflag.org/" target="_blank"><img width="85" height="70" src="assets/images/logo_torontopflag.png" alt="Toronto PFLAG"></a>
+
+				<div class="social">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://RaiseThePride.ca/" data-via="TorontoPFLAG">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_CA/sdk.js#xfbml=1&version=v2.0";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>
+					<div class="fb-share-button" data-href="http://raisethepride.ca/" data-type="button_count"></div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBBOad5HDBtUdzV381zZ9Pezhua_DG1IaM"></script>
+		<script>
+			var flag = new Image();
+			flag.onload = function () {
+				$('#flag').css({'background-image':'url(assets/images/flag-sprite.png)'});
+			}
+			flag.src = 'assets/images/flag-sprite.png';
+
+			$('#arrow').click(function (e) {
+				e.preventDefault();
+				$('html, body').animate({scrollTop:$('a[name=RaiseThePride]').offset().top}, 500);
+			});
+
+			function initialize() {
+				var myLatlng = new google.maps.LatLng(43.664540, -79.380259);
+				var mapOptions = {
+					zoom: 16,
+					center: myLatlng,
+				    scrollwheel: false
+				}
+				var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+				var image = {
+				  url: 'assets/images/map_marker.png',
+				  size: new google.maps.Size(63, 57),
+				  origin: new google.maps.Point(0, 0),
+				  anchor: new google.maps.Point(2, 57)
+				};
+
+				var marker = new google.maps.Marker({
+					position: myLatlng,
+					map: map,
+					icon: image
+				});
+
+				google.maps.event.addListener(marker, 'click', function () {
+					window.open('https://www.google.ca/maps/place/Churchmouse+%26+Firkin/data=!3m1!4b1!4m2!3m1!1s0x0:0xd25380d0fbdadd75');
+				});
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+
+	</body>
+</html>

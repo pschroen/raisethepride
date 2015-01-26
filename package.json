@@ -1,0 +1,25 @@
+{
+  "name": "raisethepride",
+  "version": "1.0.0",
+  "description": "#RaiseThePride",
+  "homepage": "http://raisethepride.ca/",
+  "author": {
+    "name": "Patrick Schroen",
+    "email": "ps@ufotechnologies.com",
+    "url": "http://blog.ufotechnologies.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pschroen/raisethepride"
+  },
+  "bugs": {
+    "url": "https://github.com/pschroen/raisethepride/issues"
+  },
+  "license": "MIT",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*"
+  }
+}

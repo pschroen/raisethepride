@@ -1,0 +1,10 @@
+{
+    "name": "Scripts",
+    "container": "node",
+    "shell": "script",
+    "items": [{
+        "text": "pflag"
+    }, {
+        "text": "raisethepride"
+    }]
+}

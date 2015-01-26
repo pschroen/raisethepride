@@ -17,7 +17,6 @@
   },
   "license": "MIT",
   "private": true,
-  "main": "index.js",
   "dependencies": {
     "express": "*",
     "socket.io": "*"

@@ -19,6 +19,7 @@
   "private": true,
   "dependencies": {
     "express": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "ntwitter": "*"
   }
 }

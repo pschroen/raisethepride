@@ -47,7 +47,8 @@ function init(probe, callback) {
     });
     var message = exports.name+" server listening on port "+shell.express.port;
     console.log(message);
-    probe.log(message);
+    probe.log("["+exports.id+"] "+message);
+    probe.next("["+exports.id+"] Forking");
     if (callback) callback();
 }
 Script.prototype.init = init;

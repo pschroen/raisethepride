@@ -134,7 +134,7 @@ function init(probe, callback) {
 	twit.stream('statuses/filter', {track:positive.join(',')+','+negative.join(','), locations:'-79.639219,43.5810846,-79.1161932,43.8554579'}, function (stream) {
 		twitstream = stream;
 		stream.on('data', function (data) {
-			if (data.text.toLowerCase().match('#raisethepride') || data.text.toLowerCase().match('#raisetheflag')) {
+			if (data.text.toLowerCase().match('#raisethepride')) {
 				raisethepride = data;
 				positivecount++;
 				top(probe, positive[0], data);

@@ -7,7 +7,7 @@ options, args = parser.parse_args()
 from nanpy import Stepper
 from nanpy import Arduino
 
-# adjust for gravity
+# Adjust for gravity
 steps = options.steps if options.steps > 0 else options.steps + -100
 print 'Motor Steps:', steps
 

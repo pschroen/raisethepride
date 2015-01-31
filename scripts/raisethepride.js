@@ -48,8 +48,10 @@ function init(probe, callback) {
     var message = exports.name+" server listening on port "+shell.express.port;
     console.log(message);
     probe.log("["+exports.id+"] "+message);
-    probe.next("["+exports.id+"] Forking");
     if (callback) callback();
+
+    // When running forever, use next() to run pflag
+    //probe.next("["+exports.id+"] Forking");
 }
 Script.prototype.init = init;
 

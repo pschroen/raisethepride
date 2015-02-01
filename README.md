@@ -73,11 +73,18 @@ sudo raspi-config
 sudo reboot
 ```
 
-Log back into your RPi and continue.
+Log back into your RPi, update and upgrade.
 
 ```sh
 sudo apt-get update
 sudo apt-get -y upgrade
+sudo rpi-update
+sudo reboot
+```
+
+Log back into your RPi and continue.
+
+```sh
 sudo apt-get -y install arduino
 wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg#md5=fe1f997bc722265116870bc7919059ea
 sudo sh setuptools-0.6c11-py2.7.egg

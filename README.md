@@ -54,7 +54,13 @@ This project is built with today's common off-the-shelf [Maker](https://en.wikip
 
 ## Installation
 
-Download the [PiHead image](https://headless.io/), and follow the [Raspberry Pi Documentation](http://www.raspberrypi.org/documentation/installation/installing-images/README.md) image installation guides.
+Download the [PiHead image](https://headless.io/), and write the image to your SD card.
+
+*For OS X, note the RAW disk device `rdisk` is much quicker.*
+
+```sh
+sudo dd bs=1m if=path_of_your_image.img of=/dev/rdisk<n>
+```
 
 Or if you already have a system image you want to use you can follow the [PiHead](https://github.com/pschroen/headless/wiki/PiHead) steps.
 

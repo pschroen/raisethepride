@@ -109,8 +109,8 @@ make
 make upload
 cd ../..
 rm setuptools-0.6c11-py2.7.egg
-sudo rm -Rf pyserial*
-sudo rm -Rf nanpy*
+sudo rm -r pyserial*
+sudo rm -r nanpy*
 ```
 
 Install the scripts.

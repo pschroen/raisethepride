@@ -28,9 +28,9 @@ This project is built with today's common off-the-shelf [Maker](https://en.wikip
 
 * [PiHead](https://github.com/pschroen/headless/wiki/PiHead) ([Raspbian](http://www.raspberrypi.org/downloads/) with [Node.js](http://nodejs.org/), [PhantomJS](http://phantomjs.org/) and the [Headless](https://headless.io/) framework)
 * [Nanpy](http://nanpy.github.io/) - [v0.8](https://pypi.python.org/pypi/nanpy/0.8)
-* [Python script](https://github.com/pschroen/raisethepride/blob/master/scripts/pflag.py) to move the motor
-* [Headless script](https://github.com/pschroen/raisethepride/blob/master/scripts/pflag.js) as the controller
-* [ntwitter](https://github.com/AvianFlu/ntwitter) for the Twitter stream
+* [Python script](https://github.com/pschroen/raisethepride/blob/master/lib/headless/scripts/pflag.py) to move the motor
+* [Headless script](https://github.com/pschroen/raisethepride/blob/master/lib/headless/scripts/pflag.js) as the controller
+* [twit](https://github.com/ttezel/twit) for the Twitter stream
 * [Express](http://expressjs.com/) framework for the website
 * [Socket.IO](http://socket.io/) framework to broadcast a `flag` object
 
@@ -120,7 +120,7 @@ cd headless-stable/users
 ls -l
 cd <user>
 wget https://github.com/pschroen/raisethepride/archive/master.tar.gz
-tar xvzf master.tar.gz --overwrite --strip=1
+tar xvzf master.tar.gz --overwrite --strip=3
 rm master.tar.gz
 cd scripts
 chmod +x pflag.py
@@ -135,16 +135,16 @@ Test-out the motor.
 ./pflag.py --steps -2000
 ```
 
-Install `express`, `socket.io` and `ntwitter`.
+Install `express`, `socket.io` and `twit`.
 
 ```sh
 cd ../../..
 npm install express
 npm install socket.io
-npm install ntwitter
+npm install twit
 ```
 
-Return to your login page, before running the scripts you'll need to specify your `express` and `ntwitter` configuration, add the following to your *Ghost* or *Shell* config. Private keys for Twitter can be obtained from your [Twitter Apps](https://apps.twitter.com/).
+Return to your login page, before running the scripts you'll need to specify your `express` and `twit` configuration, add the following to your *Ghost* or *Shell* config. Private keys for Twitter can be obtained from your [Twitter Apps](https://apps.twitter.com/).
 
 ```json
 ...
@@ -154,7 +154,7 @@ Return to your login page, before running the scripts you'll need to specify you
     "twitter": {
         "consumer_key": "<consumer key>",
         "consumer_secret": "<consumer secret>",
-        "access_token_key": "<access token key>",
+        "access_token": "<access token>",
         "access_token_secret": "<access token secret>"
     }
 ...
